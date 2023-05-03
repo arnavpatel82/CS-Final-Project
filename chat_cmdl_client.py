@@ -1,5 +1,5 @@
-from chat_client_class import *
 
+from chat_client_class import *
 
 def main():
     import argparse
@@ -9,7 +9,6 @@ def main():
 
     client = Client(args)
     client.run_chat()
-
 
 if __name__ == "__main__":
     main()
