@@ -237,9 +237,28 @@ class ChatbotGUI(ttk.Frame):
         self.display_message("Chatbot: " + response + "\n")
 
     def get_response(self, message):
-        # Here is where you would implement your chatbot's logic to generate a response
-        # For this example, we'll just echo the user's message back to them
-        return message
+        # Rule-based response for a weather chatbot
+        if "weather" in message.lower():
+            # Get the user's location from the message
+            location = self.extract_location(message)
+            if location is None:
+                return "I'm sorry, I didn't understand where you are. Can you please tell me again?"
+            else:
+                # Use an external weather API to get the current weather for the user's location
+                weather_data = self.get_weather_data(location)
+                if weather_data is None:
+                    return "I'm sorry, I couldn't get the weather data for your location. Please try again later."
+                else:
+                    # Format the weather data into a response message
+                    response = "The current weather in {location} is {condition} with a temperature of {temperature}°C.".format(
+                        location=location,
+                        condition=weather_data["condition"],
+                        temperature=weather_data["temperature"]
+                    )
+                    return response
+        else:
+            # Default response if the message doesn't match any rules
+            return "I'm sorry, I didn't understand. Can you please rephrase your question?"
 
     def display_message(self, message):
         self.chat_history.configure(state=NORMAL)
@@ -257,3 +276,5 @@ if __name__ == "__main__":
     root = Tk()
     app = MyChatbot(master=root)
     app.mainloop()
+    #this is a jojo reference
+    print("Weather Chatbot: Weather Report")
