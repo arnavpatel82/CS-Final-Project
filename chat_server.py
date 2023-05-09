@@ -1,7 +1,7 @@
 """
 Created on Tue Jul 22 00:47:05 2014
 
-@author: alina, zzhang
+@author: sarah
 """
 
 import time

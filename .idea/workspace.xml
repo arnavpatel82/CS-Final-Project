@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4bcf59c0-0a6a-4443-9c6c-d787a8693604" name="Changes" comment="" />
+    <list default="true" id="4bcf59c0-0a6a-4443-9c6c-d787a8693604" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/chat_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat_server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client_state_machine.py" beforeDir="false" afterPath="$PROJECT_DIR$/client_state_machine.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

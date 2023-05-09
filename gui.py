@@ -277,4 +277,5 @@ if __name__ == "__main__":
     app = MyChatbot(master=root)
     app.mainloop()
     #this is a jojo reference
+    #ora ora
     print("Weather Chatbot: Weather Report")
