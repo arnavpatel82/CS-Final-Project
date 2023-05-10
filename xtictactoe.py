@@ -7,131 +7,140 @@ WIDTH, HEIGHT = 900, 900
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Tic Tac Toe!")
 
-BOARD = pygame.image.load("assets/Board.png")
-X_IMG = pygame.image.load("assets/X.png")
-O_IMG = pygame.image.load("assets/O.png")
-
 BG_COLOR = (214, 201, 227)
+CIRCLE_RADIUS = 100
+LINE_WIDTH = 10
+CIRCLE_COLOR = (0, 0, 255)
+CROSS_COLOR = (255, 0, 0)
+WIN_COLOR = (0, 255, 0)
 
-board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-graphical_board = [[[None, None], [None, None], [None, None]], 
-                    [[None, None], [None, None], [None, None]], 
-                    [[None, None], [None, None], [None, None]]]
+board = [[None, None, None], [None, None, None], [None, None, None]]
 
 to_move = 'X'
-
-SCREEN.fill(BG_COLOR)
-SCREEN.blit(BOARD, (64, 64))
-
-pygame.display.update()
-
-def render_board(board, ximg, oimg):
-    global graphical_board
-    for i in range(3):
-        for j in range(3):
-            if board[i][j] == 'X':
-                # Create an X image and rect
-                graphical_board[i][j][0] = ximg
-                graphical_board[i][j][1] = ximg.get_rect(center=(j*300+150, i*300+150))
-            elif board[i][j] == 'O':
-                graphical_board[i][j][0] = oimg
-                graphical_board[i][j][1] = oimg.get_rect(center=(j*300+150, i*300+150))
-
-def add_XO(board, graphical_board, to_move):
-    current_pos = pygame.mouse.get_pos()
-    converted_x = (current_pos[0]-65)/835*2
-    converted_y = current_pos[1]/835*2
-    if board[round(converted_y)][round(converted_x)] != 'O' and board[round(converted_y)][round(converted_x)] != 'X':
-        board[round(converted_y)][round(converted_x)] = to_move
-        if to_move == 'O':
-            to_move = 'X'
-        else:
-            to_move = 'O'
-    
-    render_board(board, X_IMG, O_IMG)
-
-    for i in range(3):
-        for j in range(3):
-            if graphical_board[i][j][0] is not None:
-                SCREEN.blit(graphical_board[i][j][0], graphical_board[i][j][1])
-    
-    return board, to_move
-
 game_finished = False
 
-def check_win(board):
-    winner = None
-    for row in range(0, 3):
-        if((board[row][0] == board[row][1] == board[row][2]) and (board [row][0] is not None)):
-            winner = board[row][0]
-            for i in range(0, 3):
-                graphical_board[row][i][0] = pygame.image.load(f"assets/Winning {winner}.png")
-                SCREEN.blit(graphical_board[row][i][0], graphical_board[row][i][1])
-            pygame.display.update()
-            return winner
+def draw_board():
+    """
+    Draws the Tic Tac Toe board on the screen.
+    """
+    SCREEN.fill(BG_COLOR)
+    pygame.draw.line(SCREEN, (0, 0, 0), (WIDTH/3, 0), (WIDTH/3, HEIGHT), LINE_WIDTH)
+    pygame.draw.line(SCREEN, (0, 0, 0), (2*WIDTH/3, 0), (2*WIDTH/3, HEIGHT), LINE_WIDTH)
+    pygame.draw.line(SCREEN, (0, 0, 0), (0, HEIGHT/3), (WIDTH, HEIGHT/3), LINE_WIDTH)
+    pygame.draw.line(SCREEN, (0, 0, 0), (0, 2*HEIGHT/3), (WIDTH, 2*HEIGHT/3), LINE_WIDTH)
 
-    for col in range(0, 3):
-        if((board[0][col] == board[1][col] == board[2][col]) and (board[0][col] is not None)):
-            winner =  board[0][col]
-            for i in range(0, 3):
-                graphical_board[i][col][0] = pygame.image.load(f"assets/Winning {winner}.png")
-                SCREEN.blit(graphical_board[i][col][0], graphical_board[i][col][1])
-            pygame.display.update()
-            return winner
-   
-    if (board[0][0] == board[1][1] == board[2][2]) and (board[0][0] is not None):
-        winner =  board[0][0]
-        graphical_board[0][0][0] = pygame.image.load(f"assets/Winning {winner}.png")
-        SCREEN.blit(graphical_board[0][0][0], graphical_board[0][0][1])
-        graphical_board[1][1][0] = pygame.image.load(f"assets/Winning {winner}.png")
-        SCREEN.blit(graphical_board[1][1][0], graphical_board[1][1][1])
-        graphical_board[2][2][0] = pygame.image.load(f"assets/Winning {winner}.png")
-        SCREEN.blit(graphical_board[2][2][0], graphical_board[2][2][1])
-        pygame.display.update()
-        return winner
-          
-    if (board[0][2] == board[1][1] == board[2][0]) and (board[0][2] is not None):
-        winner =  board[0][2]
-        graphical_board[0][2][0] = pygame.image.load(f"assets/Winning {winner}.png")
-        SCREEN.blit(graphical_board[0][2][0], graphical_board[0][2][1])
-        graphical_board[1][1][0] = pygame.image.load(f"assets/Winning {winner}.png")
-        SCREEN.blit(graphical_board[1][1][0], graphical_board[1][1][1])
-        graphical_board[2][0][0] = pygame.image.load(f"assets/Winning {winner}.png")
-        SCREEN.blit(graphical_board[2][0][0], graphical_board[2][0][1])
-        pygame.display.update()
-        return winner
-    
+def draw_circle(row, col):
+    """
+    Draws a blue circle at the specified row and column.
+    """
+    center_x = int(col * WIDTH/3 + WIDTH/6)
+    center_y = int(row * HEIGHT/3 + HEIGHT/6)
+    pygame.draw.circle(SCREEN, CIRCLE_COLOR, (center_x, center_y), CIRCLE_RADIUS, LINE_WIDTH)
+
+def draw_cross(row, col):
+    """
+    Draws a red cross at the specified row and column.
+    """
+    x1 = int(col * WIDTH/3 + WIDTH/6 - CIRCLE_RADIUS)
+    y1 = int(row * HEIGHT/3 + HEIGHT/6 - CIRCLE_RADIUS)
+    x2 = int(col * WIDTH/3 + WIDTH/6 + CIRCLE_RADIUS)
+    y2 = int(row * HEIGHT/3 + HEIGHT/6 + CIRCLE_RADIUS)
+    pygame.draw.line(SCREEN, CROSS_COLOR, (x1, y1), (x2, y2), LINE_WIDTH)
+    x1 = int(col * WIDTH/3 + WIDTH/6 + CIRCLE_RADIUS)
+    y1 = int(row * HEIGHT/3 + HEIGHT/6 - CIRCLE_RADIUS)
+    x2 = int(col * WIDTH/3 + WIDTH/6 - CIRCLE_RADIUS)
+    y2 = int(row * HEIGHT/3 + HEIGHT/6 + CIRCLE_RADIUS)
+    pygame.draw.line(SCREEN, CROSS_COLOR, (x1, y1), (x2, y2), LINE_WIDTH)
+
+def get_winner():
+    """
+    Checks if there is a winner and returns their symbol (X or O).
+    Returns None if there is no winner yet.
+    """
+    # Check rows
+    for row in range(3):
+        if board[row][0] == board[row][1] == board[row][2] and board[row][0] is not None:
+            return board[row][0]
+
+    # Check columns
+    for col in range(3):
+        if board[0][col] == board[1][col] == board[2][col] and board[0][col] is not None:
+            return board[0][col]
+
+    # Check diagonals
+    if board[0][0] == board[1][1] == board[2][2] and board[0][0] is not None:
+        return board[0][0]
+    if board[0][2] == board[1][1] == board[2][0] and board[0][2] is not None:
+        return board[0][2]
+
+    # No winner yet
+    return None
+
+def end_game():
+    """
+    Displays the winner (or a tie) on the screen and resets the board.
+    """
+    winner = get_winner()
     if winner is None:
-        for i in range(len(board)):
-            for j in range(len(board)):
-                if board[i][j] != 'X' and board[i][j] != 'O':
-                    return None
-        return "DRAW"
+        font = pygame.font.SysFont(None, 100)
+        message = font.render("Tie!", True, WIN_COLOR)
+    elif winner == 'X':
+        font = pygame.font.SysFont(None, 100)
+        message = font.render("X wins!", True, WIN_COLOR)
+    else:
+        font = pygame.font.SysFont(None, 100)
+        message = font.render("O wins!", True, WIN_COLOR)
+
+    SCREEN.blit(message, (int(WIDTH/2 - message.get_rect().width/2), int(HEIGHT/2 - message.get_rect().height/2)))
+    pygame.display.update()
+
+    # Reset board
+    for row in range(3):
+        for col in range(3):
+            board[row][col] = None
+
+    pygame.time.wait(2000) # Wait for 2 seconds before resetting the board
+
+    draw_board()
+    pygame.display.update()
+
+draw_board()
+pygame.display.update()
 
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            board, to_move = add_XO(board, graphical_board, to_move)
 
-            if game_finished:
-                board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-                graphical_board = [[[None, None], [None, None], [None, None]], 
-                                    [[None, None], [None, None], [None, None]], 
-                                    [[None, None], [None, None], [None, None]]]
-
-                to_move = 'X'
-
-                SCREEN.fill(BG_COLOR)
-                SCREEN.blit(BOARD, (64, 64))
-
-                game_finished = False
+    if not game_finished:
+        try:
+            user_input = input("Enter coordinates as row,col: ")
+            row, col = map(int, user_input.strip().split(','))
+            if row < 0 or row > 2 or col < 0 or col > 2:
+                print("Invalid input, please enter values between 0 and 2.")
+                continue
+            elif board[row][col] is not None:
+                print("That square is already taken! Try another one.")
+                continue
+            else:
+                if to_move == 'O':
+                    draw_circle(row, col)
+                else:
+                    draw_cross(row, col)
+                    
+                board[row][col] = to_move
+                    
+                if get_winner() is not None:
+                    game_finished = True
+                    end_game()
+                else:
+                    if to_move == 'O':
+                        to_move = 'X'
+                    else:
+                        to_move = 'O'
 
                 pygame.display.update()
-            
-            if check_win(board) is not None:
-                game_finished = True
-            
-            pygame.display.update()
+
+        except ValueError:
+            print("Invalid input, please enter values separated by a comma.")
