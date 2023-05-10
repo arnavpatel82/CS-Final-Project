@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bcf59c0-0a6a-4443-9c6c-d787a8693604" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chat_client_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat_client_class.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_group.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat_group.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_group_student.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat_group_student.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat_server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

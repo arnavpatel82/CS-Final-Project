@@ -2,7 +2,9 @@ import socket
 import sys
 from chat_utils import *
 import client_state_machine as csm
-from GUI import *
+from gui import *
+from gui import ChatbotGUI
+from gui import MyChatbot
 
 
 class Client:

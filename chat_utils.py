@@ -1,5 +1,7 @@
 import socket
 import time
+from gui import ChatbotGUI
+from gui import MyChatbot
 
 # use local loop back address by default
 #CHAT_IP = '127.0.0.1'
@@ -15,7 +17,7 @@ menu = "\n++++ Choose one of the following commands\n \
         c _peer_: to connect to the _peer_ and chat\n \
         ? _term_: to search your chat logs where _term_ appears\n \
         p _#_: to get number <#> sonnet\n \
-        t: to play Tic Tac Toe\n \
+        t: to talk with ChatBot\n \
         q: to leave the chat system\n\n"
 
 S_OFFLINE   = 0

@@ -272,7 +272,7 @@ class MyChatbot(ChatbotGUI):
         self.master.title("My Chatbot")
 # create a GUI class object
 if __name__ == "__main__": 
-    g = GUI()
+    g = gui()
     root = Tk()
     app = MyChatbot(master=root)
     app.mainloop()
