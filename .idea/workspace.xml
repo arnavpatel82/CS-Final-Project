@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bcf59c0-0a6a-4443-9c6c-d787a8693604" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/current/gui.v1.py" beforeDir="false" afterPath="$PROJECT_DIR$/current/gui.v1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Arnav's stuff/reliable.py" beforeDir="false" afterPath="$PROJECT_DIR$/Arnav's stuff/reliable.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sarah's-stuff/gui.v1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sarah's-stuff/gui.v1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tinas-stuff/simple_gui/SM.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tinas-stuff/simple_gui/SM.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,9 +30,15 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/sarah/OneDrive/Documents/GitHub/CS-Final-Project/Sarah's-stuff"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\sarah\OneDrive\Documents\GitHub\CS-Final-Project\Sarah's-stuff" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="chat_server" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="CS-Final-Project" />

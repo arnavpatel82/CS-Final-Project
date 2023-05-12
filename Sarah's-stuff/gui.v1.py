@@ -25,6 +25,33 @@ class GUI:
         self.my_msg = ""
         self.system_msg = ""
 
+    # emoji bar window code
+    def Emoji(self):
+        self.selectedEmoji = ""
+        self.Emoji = Toplevel()
+        self.Emoji.title("Emoji Bar")
+        self.Emoji.resizable(width=False, height=False)
+        self.Emoji.configure(width=400, height=80)
+
+        # Create emoji buttons
+        e1 = Button(self.Emoji, text=":)", command=lambda: self.selectEmoji(":)"))
+        e1.place(relx=0.2, rely=0.5, anchor=CENTER)
+        e2 = Button(self.Emoji, text=":(", command=lambda: self.selectEmoji(":("))
+        e2.place(relx=0.4, rely=0.5, anchor=CENTER)
+        e3 = Button(self.Emoji, text="._.", command=lambda: self.selectEmoji("._."))
+        e3.place(relx=0.6, rely=0.5, anchor=CENTER)
+        e4 = Button(self.Emoji, text="<3", command=lambda: self.selectEmoji("<3"))
+        e4.place(relx=0.8, rely=0.5, anchor=CENTER)
+
+        # Create close button
+        close_button = Button(self.Emoji, text="Close", command=self.Emoji.destroy)
+        close_button.place(relx=0.5, rely=0.8, anchor=CENTER)
+
+    # emoji sent as a message
+
+    def selectEmoji(self, emoji):
+        self.sendButton(emoji)
+
     def login(self):
         # login window
         self.login = Toplevel()
@@ -194,6 +221,21 @@ class GUI:
 
         self.textCons.config(cursor="arrow")
 
+        # create EMOJI button
+        self.buttonMsg = Button(self.labelBottom,
+                                text="Emoji",
+                                font="Helvetica 10 bold",
+                                width=20,
+                                bg="#ABB2B9",
+                                command=lambda: self.Emoji())
+
+        self.buttonMsg.place(relx=0.55,
+                             rely=0.008,
+                             relheight=0.06,
+                             relwidth=0.22)
+
+        self.textCons.config(cursor="arrow")
+
         # create a scroll bar
         scrollbar = Scrollbar(self.textCons)
 
@@ -241,5 +283,5 @@ class GUI:
 
 # create a GUI class object
 if __name__ == "__main__":
-    # g = GUI()
-    pass
+    g = GUI()
+
